@@ -1,59 +1,21 @@
-# StudentTaskManager
+# DevTasks
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+DevTasks is a lightweight student task manager built with Angular, TypeScript, Bootstrap 5, and Bootstrap Icons. Tasks are stored in the browser with LocalStorage; no backend or account is required.
 
-## Development server
+## Run locally
 
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Install dependencies with `npm install`, then start the Angular development server:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open [http://localhost:4200](http://localhost:4200). The first visit seeds three example tasks. Add, search, filter, complete, and delete tasks from the dashboard. Data stays in the current browser profile.
+
+## Production build
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The optimized static site is written to `dist/student-task-manager/browser/` for static hosting. No deployment URL is configured in the app.
