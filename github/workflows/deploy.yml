@@ -30,6 +30,11 @@ jobs:
       - name: Build Angular application
         run: npm run build -- --configuration production
 
+      - name: Inspect build output
+        run: |
+          echo "Angular build output:"
+          find dist -name index.html
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -39,6 +44,10 @@ jobs:
 
       - name: Deploy to Amazon S3
         run: |
-          aws s3 sync ./dist/student-task-manager/ \
-            s3://${{ vars.S3_BUCKET }}/ \
+          BUILD_DIR=$(dirname "$(find dist -name index.html | head -n 1)")
+
+          echo "Deploying from: $BUILD_DIR"
+
+          aws s3 sync "$BUILD_DIR/" \
+            "s3://${{ vars.S3_BUCKET }}/" \
             --delete
