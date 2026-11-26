@@ -13,7 +13,7 @@
   <main class="main-area" id="top">
     <header class="topbar"><div class="mobile-brand"><span class="brand-mark"><i class="bi bi-check2-square"></i></span><b>Dev<span class="brand-accent">Tasks</span></b></div><div class="topbar-spacer"></div><div class="date-pill"><i class="bi bi-calendar3"></i><span>{{ today | date:'EEEE, MMMM d' }}</span></div><div class="avatar">S</div></header>
     <section class="content-wrap">
-      <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR STUDY SPACE</div><h1>Good {{ today.getHours() < 12 ? 'morning' : today.getHours() < 18 ? 'afternoon' : 'evening' }}, student <span class="wave">✦</span></h1><p class="welcome-copy">A little progress today goes a long way. Let’s get things done.</p></div><button class="btn-primary-custom" (click)="showForm.set(true)"><i class="bi bi-plus-lg"></i> Add a task</button></div>
+      <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR STUDY SPACE</div><h1>Good {{ today.getHours() < 12 ? 'morning' : today.getHours() < 18 ? 'afternoon' : 'evening' }}, BRENDA <span class="wave">✦</span></h1><p class="welcome-copy">A little progress today goes a long way. Let’s get things done.</p></div><button class="btn-primary-custom" (click)="showForm.set(true)"><i class="bi bi-plus-lg"></i> Add a task</button></div>
 
       @if (notice()) { <div class="notice" role="status"><i class="bi bi-check-circle-fill"></i>{{ notice() }}<button aria-label="Dismiss" (click)="notice.set('')"><i class="bi bi-x-lg"></i></button></div> }
 
