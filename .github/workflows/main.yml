@@ -1,0 +1,51 @@
+
+name: Deploy Angular App to AWS S3
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular application
+        run: npm run build -- --configuration production
+
+      - name: Inspect build output
+        run: |
+          echo "Build output:"
+          find dist -name index.html
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to Amazon S3
+        run: |
+          BUILD_DIR=$(dirname "$(find dist -name index.html | head -n 1)")
+
+          aws s3 sync "$BUILD_DIR/" \
+            "s3://${{ vars.S3_BUCKET }}/" \
+            --delete
